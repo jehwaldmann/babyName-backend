@@ -1,3 +1,13 @@
+const express = require("express");
+const app = express();
+const { postgrator } = require("./lib/db");
+const notFoundMiddleware = require("./middlewares/not-found");
+const errorHandlerMiddleware = require("./middlewares/errorHandler");
+const cors = require("cors");
+
+app.use(express.json());
+app.use(cors());
+
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
@@ -5,9 +15,11 @@ const port = process.env.PORT || 4000;
 console.log("port variable", port);
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
-    app.listen(port, () => {
-      console.log(`Server is listening on port ${port}...`);
+    postgrator.migrate().then((result) => {
+      console.log(`migrated db successfully:`, result);
+      app.listen(port, () => {
+        console.log(`server is listening at http://localhost:${port}`);
+      });
     });
   } catch (err) {
     console.log(err);
