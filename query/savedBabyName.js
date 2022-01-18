@@ -9,4 +9,15 @@ async function getSavedBabyNames(userId) {
   }
 }
 
-module.exports = { getSavedBabyNames};
+async function getPartnerSavedBabyNames(userId, partnerId) {
+  try {
+    const allBabyNamesWithPartner = await query(
+      `SELECT * FROM saved_baby_name WHERE partnerId = ${partnerId} AND userId = ${userId}`
+    );
+    return allBabyNamesWithPartner;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+module.exports = { getSavedBabyNames, getPartnerSavedBabyNames };
