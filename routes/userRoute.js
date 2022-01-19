@@ -44,13 +44,16 @@ router.post(
     try {
       const { email, password, user } = req.body;
 
-      bcrypt.compare(password, user.password_hash, (err, result) => {
+      bcrypt.compare(password, user.hashed_password, (err, result) => {
         if (err) {
           res.status(400).send("Incorrect Password");
           return;
         }
         if (result) {
-          const token = jwt.sign({ userId: user.userId }, process.env.SECRET_KEY);
+          const token = jwt.sign(
+            { userId: user.userId },
+            process.env.JWT_SECRET
+          );
           res.send({ email, token });
         }
       });

@@ -9,7 +9,7 @@ router.get("/", checkToken, async (req, res) => {
   res.send(allBabyNames);
 });
 
-router.get("/", checkToken, async (req, res) => {
+router.get("/partnerMatch", checkToken, async (req, res) => {
   const allBabyNamesWithPartner = await getPartnerSavedBabyNames();
   res.send(allBabyNamesWithPartner);
 });

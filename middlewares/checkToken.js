@@ -9,7 +9,7 @@ function checkToken(req, res, next) {
   }
   const token = authHeaders.replace("Bearer ", "");
 
-  jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       res.status(401).send("Invalid Token");
       return;
