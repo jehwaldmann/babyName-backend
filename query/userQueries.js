@@ -4,7 +4,7 @@ async function addUser(name, email, passwordHash, couple_key, partnerId) {
   try {
     const sql = partnerId
       ? `INSERT INTO user (name, email, hashed_password, couple_key, partnerId) VALUES ('${name}','${email}', '${passwordHash}', '${couple_key}','${partnerId}')`
-      : `INSERT INTO user (name, email, hashed_password, couple_key) VALUES ('${name}','${email}', '${passwordHash}', '${couple_key}'`;
+      : `INSERT INTO user (name, email, hashed_password, couple_key) VALUES ('${name}','${email}', '${passwordHash}', '${couple_key}')`;
     const user = await query(sql);
     return user;
   } catch (err) {
