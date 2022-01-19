@@ -1,4 +1,4 @@
-const { getUserByEmail } = require("../data/users");
+const { getUserByEmail } = require("../query/userQueries");
 
 async function doesUserExistSignup(req, res, next) {
   const { email } = req.body;

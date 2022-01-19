@@ -1,7 +1,5 @@
 const Ajv = require("ajv");
 const ajv = new Ajv();
-const addFormats = require("ajv-formats");
-addFormats(ajv);
 const { StatusCodes } = require("http-status-codes");
 
 const validateBody = (schema) => {
