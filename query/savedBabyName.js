@@ -20,4 +20,14 @@ async function getPartnerSavedBabyNames(userId, partnerId) {
   }
 }
 
-module.exports = { getSavedBabyNames, getPartnerSavedBabyNames };
+async function addBabySavedName(baby_name, userId) {
+  try {
+    const allBabyNamesWithPartner = await query(
+      `INSERT INTO saved_baby_names (baby_name, userId) VALUES (${baby_name}, ${userId}`);
+    return allBabyNamesWithPartner;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+module.exports = { getSavedBabyNames, getPartnerSavedBabyNames, addBabySavedName };
