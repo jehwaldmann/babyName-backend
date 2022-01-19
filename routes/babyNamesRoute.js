@@ -14,7 +14,7 @@ router.get("/", checkToken, async (req, res) => {
 });
 
 
-router.put("/savingName"), checkToken, async(req, res) => {
+router.post("/savingName"), checkToken, async(req, res) => {
   try {
     const { userId, baby_name } = req.body;
     const baby = await addBabySavedName(baby_name, userId);
