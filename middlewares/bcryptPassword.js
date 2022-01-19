@@ -7,7 +7,7 @@ function encryptPassword(req, res, next) {
       res.status(500).send("Error Encrypting");
       return;
     }
-    req.body.hashPassword = hash;
+    req.body.hashed_password = hash;
     next();
   });
 }
